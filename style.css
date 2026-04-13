@@ -1,0 +1,347 @@
+/* General Styles */
+@font-face {
+  font-family: df_Font;
+  src: url(font/Requiem_3.ttf);
+}
+
+* {
+  font-family: df_Font;
+}
+
+body {
+  margin: 0;
+  background-color: #161616bf;
+  color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url("images/bg/mtg_bg_03.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+/* Setup Screen Specific Styles */
+h1 {
+  color: #d51616;
+  margin-bottom: 1em;
+}
+
+.input-group {
+  margin-bottom: 1em;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5em;
+  font-size: 1.1em;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.75em;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  background-color: #444;
+  color: #f0f0f0;
+  box-sizing: border-box; /* Ensures padding doesn't affect the width */
+}
+
+.dark-bg {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}
+
+.c-lg {
+  color: #2a2a2a;
+}
+
+#start-game-btn {
+  padding: 1em 2em;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.white-btn {
+  background-color: #dbdbdb;
+  color: #444444;
+}
+
+.white-btn:hover {
+  background-color: #fff;
+}
+
+.gray-btn {
+  background-color: #444;
+  color: white;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
+
+/* Game UI Specific Styles */
+
+/* Landscape view on mobile */
+@media (orientation: landscape) {
+  .game-ui-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1em;
+    height: fit-content;
+    width: 100vw;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin-bottom: 2em;
+}
+
+.playtime {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.close-btn {
+  position: absolute;
+  right: 0;
+  padding: 0.5em 1em;
+  background-color: #62201e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.player-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1; /* Make both player containers take up equal space */
+}
+
+.player-container h2 {
+  font-size: 1.8em;
+  margin-bottom: 0.5em;
+}
+
+.lives-number {
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 0.5em;
+}
+
+.round-counter {
+  text-align: center;
+  margin: 0 1em; /* Add some space around the round counter */
+}
+
+.round-label {
+  font-size: 1em;
+  color: #aaa;
+}
+
+.round-number {
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin-top: 2em;
+  padding: 0px 30px;
+}
+
+.life-spinner {
+  display: flex;
+  gap: 1em;
+}
+
+.life-btn,
+#next-round-btn {
+  padding: 1em;
+  font-size: 1.5em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Orb-specific styles */
+
+/* Container to stack the orb elements */
+.orb-container {
+  width: 150px;
+  height: 150px;
+  position: relative; /* All children will be positioned relative to this */
+  overflow: hidden; /* Important to hide the part of the SVG that goes above the orb */
+}
+
+/* Layer 1: The Orb Base (background image) */
+.orb-base {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /*background-image: url("images/orb-base.png"); /* You'll replace this with your image */
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1; /* Lowest layer */
+}
+
+/* Layer 2: The Orb Fill (SVG) */
+.orb-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Middle layer */
+}
+
+.orb-fill svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0; /* Align the SVG to the bottom of its container */
+  border-radius: 50%;
+}
+
+.orb-fill svg path {
+  /* fill: #d9534f; Color of the life liquid (e.g., red) */
+  transition: d 0.5s ease-in-out; /* Smooth transition for the path shape */
+}
+
+/* Layer 3: The Orb Overlay (glass effect) */
+.orb-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("images/orb-overlay.png"); /* You'll replace this with your image */
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 3; /* Highest layer */
+}
+
+/* Screen Management */
+.screen {
+  display: none;
+  width: 90%;
+  max-width: 500px;
+  padding: 2em;
+  background-color: #161616;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+#win-screen {
+  background: url("images/bg/win_bg_wos.png") center/cover;
+  align-items: center;
+  justify-content: center;
+}
+
+#win-screen.active {
+  display: flex;
+  min-height: 500px;
+}
+
+.win-content {
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  padding-top: 83px;
+  width: 100%;
+  height: -webkit-fill-available;
+}
+
+.win-content.active {
+  background: url(images/bg/win_bg_splash.png) center / cover;
+}
+
+#win-message {
+  font-size: 2em;
+  padding: 135px 0 15px;
+  color: #cabc9c;
+  /* color: #2a2a2a; */
+  /* margin: 20px 0;
+  padding: 15px;
+  border-radius: 5px; */
+}
+
+#ok-btn{
+  display: none;
+}
+
+#ok-btn.active{
+  display: block;
+  justify-self: center;
+}
+
+.screen.active {
+  display: block;
+}
+
+/* Dialog styles */
+dialog {
+  border: 2px solid #d51616;
+  border-radius: 10px;
+  padding: 2em;
+  background: #161616;
+  color: white;
+  min-width: 300px;
+  text-align: center;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.dialog-buttons {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  margin-top: 1.5em;
+}
+
+.ease-in {
+  animation: growFont 7s;
+}
+
+@keyframes growFont {
+  0% {
+    font-size: 0px;
+  }
+}

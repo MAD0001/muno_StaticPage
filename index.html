@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Setup Screen -->
+    <div id="setup-screen" class="screen active">
+        <h1>Game Settings</h1>
+        <div class="input-group">
+            <label for="player1-name">Player 1 Name:</label>
+            <input type="text" id="player1-name" value="Player 1">
+        </div>
+        <div class="input-group">
+            <label for="player2-name">Player 2 Name:</label>
+            <input type="text" id="player2-name" value="Player 2">
+        </div>
+        <div class="input-group">
+            <label for="initial-lives">Starting Lives:</label>
+            <input type="number" id="initial-lives" value="20" min="1">
+        </div>
+        <button id="start-game-btn" class="white-btn">Start Game</button>
+    </div>
+
+    <!-- Game UI -->
+    <div id="game-ui-screen" class="screen game-ui-screen">
+        <div class="header">
+            <div id="playtime" class="playtime">00:00</div>
+            <button id="close-game-btn" class="close-btn df-sound">Quit</button>
+        </div>
+
+        <div class="main-content">
+            <div class="player-container">
+                <h2 id="player1-name-display">Player 1</h2>
+                <div class="orb-container">
+                    <div class="orb-base"></div>
+                    <div class="orb-fill">
+                        <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <defs>
+                                <pattern id="liquid-pattern" width="100" height="100" patternUnits="userSpaceOnUse">
+                                    <image href="images/orb-base_.jpg" x="0" y="0" width="100" height="100" />
+                                </pattern>
+                            </defs>
+                            <path id="player1-path" d="M 0,100 L 0,100 C 50,100 50,100 100,100 L 100,100 Z"
+                                fill="url(#liquid-pattern)"></path>
+                        </svg>
+                    </div>
+                    <div class="orb-overlay"></div>
+                </div>
+                <div id="player1-lives-display" class="lives-number">20</div>
+            </div>
+
+            <div class="round-counter">
+                <div class="round-label">Round</div>
+                <div id="round-number" class="round-number">1</div>
+            </div>
+
+            <div class="player-container">
+                <h2 id="player2-name-display">Player 2</h2>
+                <div class="orb-container">
+                    <div class="orb-base"></div>
+                    <div class="orb-fill">
+                        <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <defs>
+                                <pattern id="liquid-pattern2" width="100" height="100" patternUnits="userSpaceOnUse">
+                                    <image href="images/orb-base_.jpg" x="0" y="0" width="100" height="100" />
+                                </pattern>
+                            </defs>
+                            <path id="player2-path" d="M 0,100 L 0,100 C 50,100 50,100 100,100 L 100,100 Z"
+                                fill="url(#liquid-pattern2)"></path>
+                        </svg>
+                    </div>
+                    <div class="orb-overlay"></div>
+                </div>
+                <div id="player2-lives-display" class="lives-number">20</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="life-spinner">
+                <button class="life-btn gray-btn df-sound" data-player="1" data-action="minus">-</button>
+                <button class="life-btn gray-btn df-sound" data-player="1" data-action="plus">+</button>
+            </div>
+
+            <div id="gap" style="width: 100%;"></div>
+
+            <div class="life-spinner">
+                <button class="life-btn gray-btn df-sound" data-player="2" data-action="minus">-</button>
+                <button class="life-btn gray-btn df-sound" data-player="2" data-action="plus">+</button>
+            </div>
+        </div>
+
+        <button id="next-round-btn" class="white-btn mt-40 df-sound">Next Round</button>
+
+    </div>
+
+    <!-- Win Screen -->
+    <div id="win-screen" class="screen">
+        <div class="win-content">
+            <!-- <h1 class="dark-bg">Game Over!</h1> -->
+            <div id="win-message">
+                Winner 
+                <div id="win-text-addition" style="font-size: small;"></div><br>
+                <div id="win-player-name" class="c-lg ease-in"></div>
+            </div>
+            <button id="ok-btn" class="btn white-btn mt-40 df-sound">OK</button>
+        </div>
+    </div>
+
+    <dialog id="validation-dialog">
+        <p>Please enter valid player names and a starting number of lives.</p>
+        <button id="validation-ok" class="btn white-btn df-sound">OK</button>
+    </dialog>
+
+    <dialog id="quit-dialog">
+        <p>Are you sure you want to end the game?<br>
+            Your progress will be lost.</p>
+        <div class="dialog-buttons">
+            <button id="quit-confirm" class="btn white-btn df-sound">Yes</button>
+            <button id="quit-cancel" class="btn gray-btn df-sound">No</button>
+        </div>
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
